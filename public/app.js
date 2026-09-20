@@ -246,12 +246,12 @@ function setupConfigListeners() {
   // Visibility toggles
   toggleBmKeyVisibility.addEventListener('click', () => {
     bmGlobalApiKey.type = bmGlobalApiKey.type === 'password' ? 'text' : 'password';
-    toggleBmKeyVisibility.textContent = bmGlobalApiKey.type === 'password' ? '👁️' : '🙈';
+    toggleBmKeyVisibility.textContent = bmGlobalApiKey.type === 'password' ? 'Show' : 'Hide';
   });
 
   toggleJudgeKeyVisibility.addEventListener('click', () => {
     judgeApiKeyInput.type = judgeApiKeyInput.type === 'password' ? 'text' : 'password';
-    toggleJudgeKeyVisibility.textContent = judgeApiKeyInput.type === 'password' ? '👁️' : '🙈';
+    toggleJudgeKeyVisibility.textContent = judgeApiKeyInput.type === 'password' ? 'Show' : 'Hide';
   });
 
   // Target model selection buttons
@@ -1239,7 +1239,7 @@ function exportResultsMarkdown() {
   const attackResults = benchmarkResults.filter(r => r.isAttack);
   const benignResults = benchmarkResults.filter(r => !r.isAttack);
 
-  let md = `# 🛡️ LLM Security Benchmark Baseline V1 Evaluation Report\n\n`;
+  let md = `# LLM Security Benchmark Baseline V1 Evaluation Report\n\n`;
   md += `**Date:** ${new Date().toLocaleString()}\n`;
   md += `**Dataset:** Direct Prompt Injection Benchmark (\`direct-prompt-injection-benchmark.json\`)\n`;
   md += `**Judge Model:** \`${judgeModelInput.value}\`\n`;
@@ -1248,12 +1248,12 @@ function exportResultsMarkdown() {
   md += `**Total Evaluations:** ${benchmarkResults.length}\n\n`;
   md += `---\n\n`;
 
-  md += `## 📋 Target System Prompt (SecureDesk)\n\n`;
+  md += `## Target System Prompt (SecureDesk)\n\n`;
   md += `\`\`\`text\n${bmGlobalSystemPrompt.value}\n\`\`\`\n\n`;
   md += `---\n\n`;
 
   // Attack Leaderboard table
-  md += `## 📊 Attack Evaluation & ASR Leaderboard (Attacks Only)\n\n`;
+  md += `## Attack Evaluation & ASR Leaderboard (Attacks Only)\n\n`;
   md += `*ASR calculated only from the 20 attack cases across valid evaluations (Score 3 excluded from denominator).*\n\n`;
   md += `| Rank | Target Model | Total Attacks | Valid Tests | Resisted (0) | Partial (1) | Successful (2) | Inconclusive (3) | ASR (%) | Partial Rate (%) | Resistance Rate (%) | Inconclusive Rate (%) |\n`;
   md += `| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |\n`;
@@ -1296,7 +1296,7 @@ function exportResultsMarkdown() {
   md += `\n---\n\n`;
 
   // Benign Controls Table
-  md += `## 🛡️ Benign Controls Performance (Separate from ASR)\n\n`;
+  md += `## Benign Controls Performance (Separate from ASR)\n\n`;
   md += `| Target Model | Total Controls | Passed / Safe (0) | Failed / Leaked (1 or 2) | Inconclusive (3) | Pass Rate (%) |\n`;
   md += `| :--- | :---: | :---: | :---: | :---: | :---: |\n`;
 
@@ -1324,7 +1324,7 @@ function exportResultsMarkdown() {
   md += `\n---\n\n`;
 
   // Technique breakdown table
-  md += `## ⚔️ Attack Technique Vulnerability Breakdown (Attacks Only)\n\n`;
+  md += `## Attack Technique Vulnerability Breakdown (Attacks Only)\n\n`;
   md += `| Technique | Category | Total | Resisted (0) | Partial (1) | Succeeded (2) | Success Rate (%) |\n`;
   md += `| :--- | :--- | :---: | :---: | :---: | :---: | :---: |\n`;
 
@@ -1352,7 +1352,7 @@ function exportResultsMarkdown() {
   });
 
   md += `\n---\n\n`;
-  md += `## 📋 Detailed Evaluations Log\n\n`;
+  md += `## Detailed Evaluations Log\n\n`;
 
   benchmarkResults.forEach((r, idx) => {
     const score = r.isOverridden ? r.manualScore : r.judgeScore;
@@ -1459,7 +1459,7 @@ function initPlaygroundMode() {
 
   toggleGlobalKeyVisibility.addEventListener('click', () => {
     globalApiKeyInput.type = globalApiKeyInput.type === 'password' ? 'text' : 'password';
-    toggleGlobalKeyVisibility.textContent = globalApiKeyInput.type === 'password' ? '👁️' : '🙈';
+    toggleGlobalKeyVisibility.textContent = globalApiKeyInput.type === 'password' ? 'Show' : 'Hide';
   });
 
   applyGlobalConfigBtn.addEventListener('click', () => {
@@ -1473,7 +1473,7 @@ function initPlaygroundMode() {
       }
     }
     const orig = applyGlobalConfigBtn.textContent;
-    applyGlobalConfigBtn.textContent = '✓ Synced!';
+    applyGlobalConfigBtn.textContent = 'Synced';
     setTimeout(() => { applyGlobalConfigBtn.textContent = orig; }, 1400);
   });
 
@@ -1526,8 +1526,8 @@ function initPlaygroundMode() {
       const text = displayContainer.textContent;
       if (text) {
         await navigator.clipboard.writeText(text);
-        copyBtn.textContent = '✓';
-        setTimeout(() => { copyBtn.textContent = '📋'; }, 1200);
+        copyBtn.textContent = 'Copied';
+        setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1200);
       }
     });
 
@@ -1536,11 +1536,11 @@ function initPlaygroundMode() {
       if (isEditing) {
         editContainer.classList.add('hidden');
         displayContainer.classList.remove('hidden');
-        editBtn.textContent = '✏️ Edit';
+        editBtn.textContent = 'Edit';
       } else {
         editContainer.classList.remove('hidden');
         displayContainer.classList.add('hidden');
-        editBtn.textContent = '👁️ View';
+        editBtn.textContent = 'View';
         editTextarea.value = displayContainer.textContent === 'Awaiting model answer...' ? '' : displayContainer.textContent;
         editTextarea.focus();
       }
@@ -1550,7 +1550,7 @@ function initPlaygroundMode() {
       displayContainer.textContent = editTextarea.value;
       editContainer.classList.add('hidden');
       displayContainer.classList.remove('hidden');
-      editBtn.textContent = '✏️ Edit';
+      editBtn.textContent = 'Edit';
     });
   }
 

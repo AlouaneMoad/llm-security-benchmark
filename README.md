@@ -3,12 +3,12 @@
 A modular, research-grade security testing platform and differential evaluation framework for **LLM Red Teaming, OWASP Top 10 for LLM (LLM01 Prompt Injection, LLM06 Sensitive Information Disclosure), and automated LLM-as-a-Judge benchmarking**.
 
 This tool provides a dual-mode environment:
-1. **🛡️ Attack Benchmark Mode (Baseline V1)**: An automated adversarial testing suite running 375 evaluations (20 attack vectors + 5 benign controls across 15 target LLMs), evaluated by an isolated Claude Sonnet 5 judge using a scientific 4-tier rubric.
-2. **⚡ Interactive Multi-Model Studio (Playground)**: A side-by-side prompt differential testing workbench allowing real-time parallel testing of 3 to 4 LLMs with custom system instructions, endpoints, and live response editing.
+1. **Attack Benchmark Mode (Baseline V1)**: An automated adversarial testing suite running 375 evaluations (20 attack vectors + 5 benign controls across 15 target LLMs), evaluated by an isolated Claude Sonnet 5 judge using a scientific 4-tier rubric.
+2. **Interactive Multi-Model Studio (Playground)**: A side-by-side prompt differential testing workbench allowing real-time parallel testing of 3 to 4 LLMs with custom system instructions, endpoints, and live response editing.
 
 ---
 
-## 🏛️ High-Level System Architecture
+## High-Level System Architecture
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
@@ -36,7 +36,7 @@ This tool provides a dual-mode environment:
 
 ---
 
-## 🔬 How the Tool Works (Under the Hood)
+## How the Tool Works (Under the Hood)
 
 ### 1. Dataset & Ground Truth Configuration
 - **Dataset File:** `data/direct-prompt-injection-benchmark.json`
@@ -156,26 +156,26 @@ When a benchmark is launched:
 
 ---
 
-## 🚀 How to Run the Application
+## How to Run the Application
 
 ### 1. Start the Server
 ```bash
 npm start
 ```
 The server starts locally at:
-👉 **[http://localhost:3000](http://localhost:3000)**
+**[http://localhost:3000](http://localhost:3000)**
 
 ### 2. Run the Benchmark in the Web UI
 1. Navigate to **[http://localhost:3000](http://localhost:3000)**.
-2. Select **"🛡️ Attack Benchmark Mode"**.
+2. Select **"Attack Benchmark Mode"**.
 3. Verify that all **15 Models** and all **25 Tests** (20 attacks + 5 controls) are checked.
    - The summary bar will show: `Ready: 15 Models × 25 Tests (20 attacks, 5 controls) = 375 Evaluations`.
-4. Click **"🚀 Start Benchmark Run"**.
+4. Click **"Start Benchmark Run"**.
 5. Watch real-time execution across the progress bar, model leaderboard, and results matrix.
-6. Once complete, click **"📄 Export Markdown Report"** to download `baseline-v1-corrected.md`, or export CSV/JSON for further data science analysis.
+6. Once complete, click **"Export Markdown Report"** to download `baseline-v1-corrected.md`, or export CSV/JSON for further data science analysis.
 
 ### 3. Interactive Multi-Model Playground
-1. Switch to the **"⚡ Interactive Multi-Model Studio"** tab.
+1. Switch to the **"Interactive Multi-Model Studio"** tab.
 2. Choose **3 Models** or **4 Models** layout.
 3. Select models from the dropdown or type custom model names.
-4. Type a prompt or attack in the global prompt box and press `Ctrl + Enter` (or click **"🚀 Run All Models"**) to observe side-by-side behavioral differences.
+4. Type a prompt or attack in the global prompt box and press `Ctrl + Enter` (or click **"Run All Models"**) to observe side-by-side behavioral differences.

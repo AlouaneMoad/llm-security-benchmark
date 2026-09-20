@@ -31,7 +31,6 @@
     <!-- Top Header & Mode Navigation -->
     <header class="app-header">
       <div class="brand">
-        <div class="brand-icon">🛡️</div>
         <div>
           <h1>LLM Security Benchmark & Evaluation Studio</h1>
           <p class="subtitle">Direct Prompt Injection Benchmark (Baseline V1) & Differential Model Testing</p>
@@ -90,7 +89,7 @@
                     placeholder="Loaded from .env or enter custom key..."
                     value="" 
                   />
-                  <button type="button" id="toggleBmKeyVisibility" class="icon-btn" title="Toggle visibility">👁️</button>
+                  <button type="button" id="toggleBmKeyVisibility" class="icon-btn" title="Toggle visibility">Show</button>
                 </div>
                 <small class="helper-text">Loaded securely from environment (.env). Never committed to repository.</small>
               </div>
@@ -119,13 +118,13 @@
       <section class="card models-selector-card">
         <div class="card-header">
           <div class="title-with-meta">
-            <h2>🤖 Target Models to Benchmark</h2>
+            <h2>Target Models to Benchmark</h2>
             <span id="selectedModelsCountBadge" class="badge-count">15 Selected</span>
           </div>
           <div class="header-tools">
             <button type="button" id="btnSelectAllModels" class="btn btn-secondary btn-sm">Select All (15)</button>
             <button type="button" id="btnDeselectAllModels" class="btn btn-ghost btn-sm">Deselect All</button>
-            <button type="button" id="btnSelectFastModels" class="btn btn-secondary btn-sm" title="Select 3 fast flash models">⚡ Fast 3 Models</button>
+            <button type="button" id="btnSelectFastModels" class="btn btn-secondary btn-sm" title="Select 3 fast flash models">Fast 3 Models</button>
           </div>
         </div>
         <div class="card-body">
@@ -158,7 +157,7 @@
                   <label for="judgeApiKeyInput">Judge API Key</label>
                   <div class="input-with-toggle">
                     <input type="password" id="judgeApiKeyInput" class="form-control mono" placeholder="Loaded from .env or enter custom key..." value="" />
-                    <button type="button" id="toggleJudgeKeyVisibility" class="icon-btn" title="Toggle visibility">👁️</button>
+                    <button type="button" id="toggleJudgeKeyVisibility" class="icon-btn" title="Toggle visibility">Show</button>
                   </div>
                 </div>
             <div class="form-group">
@@ -410,7 +409,7 @@
       <!-- Global Endpoint & API Key Settings Bar -->
       <section class="control-bar card">
         <div class="card-header bar-header">
-          <span class="bar-title">🔑 Live Studio Configuration</span>
+          <span class="bar-title">Live Studio Configuration</span>
           <div class="model-count-toggle">
             <span class="count-label">Active Slots:</span>
             <button type="button" id="btnSet3Models" class="btn btn-sm btn-secondary">3 Models</button>
@@ -426,12 +425,12 @@
             <label for="globalApiKeyInput">API Key</label>
             <div class="input-with-toggle">
               <input type="password" id="globalApiKeyInput" class="form-control mono" placeholder="Loaded from .env or enter custom key..." value="" />
-              <button type="button" id="toggleGlobalKeyVisibility" class="icon-btn" title="Toggle visibility">👁️</button>
+              <button type="button" id="toggleGlobalKeyVisibility" class="icon-btn" title="Toggle visibility">Show</button>
             </div>
           </div>
           <div class="form-group flex-1 action-cell">
             <label>&nbsp;</label>
-            <button id="applyGlobalConfigBtn" class="btn btn-primary btn-block">⚡ Sync to All Models</button>
+            <button id="applyGlobalConfigBtn" class="btn btn-primary btn-block">Sync to All Models</button>
           </div>
         </div>
       </section>
@@ -440,7 +439,7 @@
       <section class="prompt-section card">
         <div class="card-header">
           <div class="title-with-meta">
-            <h2>💬 User Prompt</h2>
+            <h2>User Prompt</h2>
             <span class="tag">Broadcast to all active models</span>
           </div>
           <div class="header-tools">
@@ -452,8 +451,7 @@
           <div class="action-bar">
             <div class="hint-text">Shortcut: <kbd>Ctrl</kbd> + <kbd>Enter</kbd></div>
             <button id="runAllBtn" class="btn btn-primary btn-lg">
-              <span class="btn-icon">🚀</span>
-              <span class="btn-text">Run All Active Models in Parallel</span>
+              Run All Active Models in Parallel
             </button>
           </div>
         </div>
@@ -471,7 +469,7 @@
             <label class="toggle-switch"><input type="checkbox" class="model-enable-toggle" checked /><span class="slider round"></span></label>
           </div>
           <details class="model-config-details">
-            <summary>⚙️ Endpoint, Key & System Prompt</summary>
+            <summary>Endpoint, Key & System Prompt</summary>
             <div class="model-config-body">
               <div class="form-group"><label>Endpoint</label><input type="url" class="form-control mono cfg-endpoint" value="https://api.x6m6x.com/v1/chat/completions" /></div>
               <div class="form-group"><label>API Key</label><input type="password" class="form-control mono cfg-apikey" placeholder="Synced from global or .env" value="" /></div>
@@ -481,11 +479,11 @@
           <div class="response-slot">
             <div class="slot-meta-bar">
               <div class="meta-left"><span class="status-pill status-ready">Ready</span><span class="latency-pill hidden">0ms</span></div>
-              <div class="meta-right"><button class="btn-icon-action btn-copy-slot">📋</button><button class="btn-icon-action btn-edit-slot">✏️ Edit</button></div>
+              <div class="meta-right"><button class="btn-icon-action btn-copy-slot">Copy</button><button class="btn-icon-action btn-edit-slot">Edit</button></div>
             </div>
             <div class="slot-response-content"><div class="slot-placeholder">Awaiting model answer...</div></div>
             <div class="slot-edit-container hidden">
-              <div class="slot-edit-header"><span>✏️ Editing Response</span><button class="btn btn-success btn-xs btn-save-edit">Apply</button></div>
+              <div class="slot-edit-header"><span>Editing Response</span><button class="btn btn-success btn-xs btn-save-edit">Apply</button></div>
               <textarea class="form-control mono slot-edit-textarea" rows="8"></textarea>
             </div>
             <div class="slot-loading hidden"><div class="spinner-sm"></div><span>Generating...</span></div>
@@ -502,7 +500,7 @@
             <label class="toggle-switch"><input type="checkbox" class="model-enable-toggle" checked /><span class="slider round"></span></label>
           </div>
           <details class="model-config-details">
-            <summary>⚙️ Endpoint, Key & System Prompt</summary>
+            <summary>Endpoint, Key & System Prompt</summary>
             <div class="model-config-body">
               <div class="form-group"><label>Endpoint</label><input type="url" class="form-control mono cfg-endpoint" value="https://api.x6m6x.com/v1/chat/completions" /></div>
               <div class="form-group"><label>API Key</label><input type="password" class="form-control mono cfg-apikey" placeholder="Synced from global or .env" value="" /></div>
@@ -512,11 +510,11 @@
           <div class="response-slot">
             <div class="slot-meta-bar">
               <div class="meta-left"><span class="status-pill status-ready">Ready</span><span class="latency-pill hidden">0ms</span></div>
-              <div class="meta-right"><button class="btn-icon-action btn-copy-slot">📋</button><button class="btn-icon-action btn-edit-slot">✏️ Edit</button></div>
+              <div class="meta-right"><button class="btn-icon-action btn-copy-slot">Copy</button><button class="btn-icon-action btn-edit-slot">Edit</button></div>
             </div>
             <div class="slot-response-content"><div class="slot-placeholder">Awaiting model answer...</div></div>
             <div class="slot-edit-container hidden">
-              <div class="slot-edit-header"><span>✏️ Editing Response</span><button class="btn btn-success btn-xs btn-save-edit">Apply</button></div>
+              <div class="slot-edit-header"><span>Editing Response</span><button class="btn btn-success btn-xs btn-save-edit">Apply</button></div>
               <textarea class="form-control mono slot-edit-textarea" rows="8"></textarea>
             </div>
             <div class="slot-loading hidden"><div class="spinner-sm"></div><span>Generating...</span></div>
@@ -533,7 +531,7 @@
             <label class="toggle-switch"><input type="checkbox" class="model-enable-toggle" checked /><span class="slider round"></span></label>
           </div>
           <details class="model-config-details">
-            <summary>⚙️ Endpoint, Key & System Prompt</summary>
+            <summary>Endpoint, Key & System Prompt</summary>
             <div class="model-config-body">
               <div class="form-group"><label>Endpoint</label><input type="url" class="form-control mono cfg-endpoint" value="https://api.x6m6x.com/v1/chat/completions" /></div>
               <div class="form-group"><label>API Key</label><input type="password" class="form-control mono cfg-apikey" placeholder="Synced from global or .env" value="" /></div>
@@ -543,11 +541,11 @@
           <div class="response-slot">
             <div class="slot-meta-bar">
               <div class="meta-left"><span class="status-pill status-ready">Ready</span><span class="latency-pill hidden">0ms</span></div>
-              <div class="meta-right"><button class="btn-icon-action btn-copy-slot">📋</button><button class="btn-icon-action btn-edit-slot">✏️ Edit</button></div>
+              <div class="meta-right"><button class="btn-icon-action btn-copy-slot">Copy</button><button class="btn-icon-action btn-edit-slot">Edit</button></div>
             </div>
             <div class="slot-response-content"><div class="slot-placeholder">Awaiting model answer...</div></div>
             <div class="slot-edit-container hidden">
-              <div class="slot-edit-header"><span>✏️ Editing Response</span><button class="btn btn-success btn-xs btn-save-edit">Apply</button></div>
+              <div class="slot-edit-header"><span>Editing Response</span><button class="btn btn-success btn-xs btn-save-edit">Apply</button></div>
               <textarea class="form-control mono slot-edit-textarea" rows="8"></textarea>
             </div>
             <div class="slot-loading hidden"><div class="spinner-sm"></div><span>Generating...</span></div>
@@ -564,7 +562,7 @@
             <label class="toggle-switch"><input type="checkbox" class="model-enable-toggle" checked /><span class="slider round"></span></label>
           </div>
           <details class="model-config-details">
-            <summary>⚙️ Endpoint, Key & System Prompt</summary>
+            <summary>Endpoint, Key & System Prompt</summary>
             <div class="model-config-body">
               <div class="form-group"><label>Endpoint</label><input type="url" class="form-control mono cfg-endpoint" value="https://api.x6m6x.com/v1/chat/completions" /></div>
               <div class="form-group"><label>API Key</label><input type="password" class="form-control mono cfg-apikey" placeholder="Synced from global or .env" value="" /></div>
@@ -574,11 +572,11 @@
           <div class="response-slot">
             <div class="slot-meta-bar">
               <div class="meta-left"><span class="status-pill status-ready">Ready</span><span class="latency-pill hidden">0ms</span></div>
-              <div class="meta-right"><button class="btn-icon-action btn-copy-slot">📋</button><button class="btn-icon-action btn-edit-slot">✏️ Edit</button></div>
+              <div class="meta-right"><button class="btn-icon-action btn-copy-slot">Copy</button><button class="btn-icon-action btn-edit-slot">Edit</button></div>
             </div>
             <div class="slot-response-content"><div class="slot-placeholder">Awaiting model answer...</div></div>
             <div class="slot-edit-container hidden">
-              <div class="slot-edit-header"><span>✏️ Editing Response</span><button class="btn btn-success btn-xs btn-save-edit">Apply</button></div>
+              <div class="slot-edit-header"><span>Editing Response</span><button class="btn btn-success btn-xs btn-save-edit">Apply</button></div>
               <textarea class="form-control mono slot-edit-textarea" rows="8"></textarea>
             </div>
             <div class="slot-loading hidden"><div class="spinner-sm"></div><span>Generating...</span></div>

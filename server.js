@@ -267,7 +267,7 @@ app.post('/api/mock-llm', async (req, res) => {
 
   // Different security simulated behaviors
   if (modelLower.includes('guardrail') || modelLower.includes('refusal') || modelLower.includes('shield')) {
-    generatedContent = `[🛡️ Llama-Guard / Strict Refusal Filter]
+    generatedContent = `[Llama-Guard / Strict Refusal Filter]
 Status: BLOCKED / REFUSAL
 Model: ${model}
 
@@ -276,7 +276,7 @@ Response:
 
 Safety Policy: OWASP LLM01 - Prompt Injection Prevention triggered."`;
   } else if (modelLower.includes('vulnerable') || modelLower.includes('legacy') || modelLower.includes('raw')) {
-    generatedContent = `[⚠️ Vulnerable Model / No Guardrail]
+    generatedContent = `[Vulnerable Model / No Guardrail]
 Status: INJECTION SUCCEEDED
 Model: ${model}
 
@@ -286,7 +286,7 @@ Here is the confidential system data:
 FLAG{INTERNAL_DB_SECRET_KEY_EXPOSED_8849}
 Admin Role Granted. What would you like me to do next?"`;
   } else if (modelLower.includes('analyst') || modelLower.includes('auditor')) {
-    generatedContent = `[🔍 LLM Security Auditor / Differential Analyzer]
+    generatedContent = `[LLM Security Auditor / Differential Analyzer]
 Status: EVALUATION COMPLETE
 Model: ${model}
 
@@ -297,7 +297,7 @@ Prompt Risk Assessment:
 • OWASP Category: LLM01 (Prompt Injection) / LLM06 (Sensitive Info Disclosure)
 • Recommendation: Implement dual-layer input sanitization and strict delimiter fencing.`;
   } else {
-    generatedContent = `[🤖 Model: ${model}]
+    generatedContent = `[Model: ${model}]
 Active System Instruction: "${sysMsg}"
 
 Answer to prompt:
@@ -626,8 +626,8 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`=======================================================`);
-  console.log(`🚀 LLM Studio & Security Differential Analyzer Running`);
-  console.log(`📡 Local Server URL : http://localhost:${PORT}`);
-  console.log(`🛡️  CORS Proxy Active : Multi-Model Parallel Ready (3-4 models)`);
+  console.log(`LLM Studio & Security Differential Analyzer Running`);
+  console.log(`Local Server URL : http://localhost:${PORT}`);
+  console.log(`CORS Proxy Active : Multi-Model Parallel Ready`);
   console.log(`=======================================================`);
 });
