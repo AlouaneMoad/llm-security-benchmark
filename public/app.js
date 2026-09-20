@@ -547,7 +547,7 @@ async function startBenchmarkExecution() {
     return;
   }
 
-  const judgeModel = judgeModelInput.value.trim() || 'claude-sonnet-5';
+  const judgeModel = judgeModelInput.value.trim() || 'deepseek-v4.1-flash';
   const judgeEndpoint = judgeEndpointInput.value.trim() || endpoint;
   const judgeApiKey = judgeApiKeyInput.value.trim() || apiKey;
   const judgeSystem = judgeSystemPromptInput.value.trim();

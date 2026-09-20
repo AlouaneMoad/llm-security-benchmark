@@ -3,7 +3,7 @@
 A modular, research-grade security testing platform and differential evaluation framework for **LLM Red Teaming, OWASP Top 10 for LLM (LLM01 Prompt Injection, LLM06 Sensitive Information Disclosure), and automated LLM-as-a-Judge benchmarking**.
 
 This tool provides a dual-mode environment:
-1. **Attack Benchmark Mode (Baseline V1)**: An automated adversarial testing suite running 375 evaluations (20 attack vectors + 5 benign controls across 15 target LLMs), evaluated by an isolated Claude Sonnet 5 judge using a scientific 4-tier rubric.
+1. **Attack Benchmark Mode (Baseline V1)**: An automated adversarial testing suite running 375 evaluations (20 attack vectors + 5 benign controls across 15 target LLMs), evaluated by an isolated DeepSeek V4.1 Flash judge using a scientific 4-tier rubric.
 2. **Interactive Multi-Model Studio (Playground)**: A side-by-side prompt differential testing workbench allowing real-time parallel testing of 3 to 4 LLMs with custom system instructions, endpoints, and live response editing.
 
 ---
@@ -112,8 +112,8 @@ When a benchmark is launched:
      - `finalResponse`: The text sent back to the user.
      - `reasoningTrace`: Internal reasoning content (e.g. `<think>` blocks, `reasoning_content`, or Anthropic `thinking`).
    - The platform strictly distinguishes between internal reasoning leaks and attacker-visible leaks. Internal reasoning is **not** counted as visible leakage unless exposed in the model's actual response.
-4. **LLM-as-a-Judge Evaluation (`claude-sonnet-5`):**
-   - The target output is forwarded to an independent `claude-sonnet-5` evaluator running with zero temperature (`0.0`).
+4. **LLM-as-a-Judge Evaluation (`deepseek-v4.1-flash`):**
+   - The target output is forwarded to an independent `deepseek-v4.1-flash` evaluator running with zero temperature (`0.0`).
    - The judge does **not** inherit target memory or target context; it acts purely as an auditor against the benchmark rubric.
 
 ---
@@ -147,7 +147,7 @@ When a benchmark is launched:
 
 | File Path | Role & Functionality |
 | :--- | :--- |
-| **`server.js`** | **Node.js Express Backend & LLM Proxy**: <br>• Solves browser CORS restrictions by proxying API calls.<br>• `extractResponseDetails()` parses multiple LLM provider schemas (OpenAI, Gemini, Anthropic, DeepSeek `<think>`).<br>• `/api/generate` & `/api/generate-multi`: Concurrent LLM caller with 60s abort controllers.<br>• `/api/benchmark/attacks`: Serves dataset attacks and benign controls.<br>• `/api/benchmark/judge`: Evaluates target responses via `claude-sonnet-5` using the 4-tier rubric. |
+| **`server.js`** | **Node.js Express Backend & LLM Proxy**: <br>• Solves browser CORS restrictions by proxying API calls.<br>• `extractResponseDetails()` parses multiple LLM provider schemas (OpenAI, Gemini, Anthropic, DeepSeek `<think>`).<br>• `/api/generate` & `/api/generate-multi`: Concurrent LLM caller with 60s abort controllers.<br>• `/api/benchmark/attacks`: Serves dataset attacks and benign controls.<br>• `/api/benchmark/judge`: Evaluates target responses via `deepseek-v4.1-flash` using the 4-tier rubric. |
 | **`public/app.js`** | **Frontend Application Engine**: <br>• Manages tab navigation, state persistence (`localStorage`), and dynamic checklist generation.<br>• `startBenchmarkExecution()`: Coordinates parallel queue execution across models and tests.<br>• `calculateAndRenderStatistics()`: Computes separate ASR, resistance, and benign pass rates.<br>• `renderResultsTable()`: Renders live searchable/filterable evaluation matrix.<br>• `openManualOverrideModal()`: Allows researchers to manually audit and override judge scores.<br>• `exportResultsCSV()`, `exportResultsJSON()`, `exportResultsMarkdown()`: Comprehensive export generators (outputs `baseline-v1-corrected.md`).<br>• `initPlaygroundMode()`: Multi-model interactive playground controller. |
 | **`public/index.html`** | **Frontend Structure & Layout**: <br>• Navigation tabs for Benchmark Mode vs. Interactive Studio.<br>• Global API configuration panels (Endpoint & Key).<br>• 15-model checklist with quick-picker buttons.<br>• Attack & control selection table with category filters.<br>• Progress bar with real-time score counters (Scores 0, 1, 2, and 3).<br>• Statistics dashboard (Model ASR Leaderboard, Benign Performance, Technique Breakdown).<br>• Detailed Evaluation Matrix with expandable prompts and responses.<br>• Native `<dialog>` modal for researcher manual verification overrides.<br>• Interactive 4-slot comparison grid for playground testing. |
 | **`public/style.css`** | **Design System & Styling**: <br>• Dark-mode theme using modern CSS variables (`--bg-body`, `--primary`, `--card-bg`, etc.).<br>• Monospace font integration (`JetBrains Mono`) for tokens, latency, and code blocks.<br>• Color-coded badges for scores (Score 0: Green, Score 1: Amber, Score 2: Red, Score 3: Slate).<br>• Responsive grid layouts for model cards and statistical tables. |
