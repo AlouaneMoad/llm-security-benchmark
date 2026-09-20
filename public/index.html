@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LLM Security Benchmark & Multi-Model Evaluation Studio</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Datalist for Playground Models -->
@@ -37,17 +34,17 @@
         <div class="brand-icon">🛡️</div>
         <div>
           <h1>LLM Security Benchmark & Evaluation Studio</h1>
-          <p class="subtitle">Automated attack testing, differential evaluation & LLM-as-a-Judge benchmarking (No-CORS Proxy)</p>
+          <p class="subtitle">Direct Prompt Injection Benchmark (Baseline V1) & Differential Model Testing</p>
         </div>
       </div>
       
       <!-- Primary Navigation Tabs -->
       <nav class="mode-nav">
         <button type="button" id="tabBenchmarkMode" class="nav-tab active">
-          🛡️ Attack Benchmark Mode
+          Attack Benchmark
         </button>
         <button type="button" id="tabPlaygroundMode" class="nav-tab">
-          ⚡ Interactive Multi-Model Studio
+          Interactive Studio
         </button>
       </nav>
 
@@ -66,7 +63,7 @@
       <!-- Top Config: Target API + Global System Prompt -->
       <section class="card config-card">
         <div class="card-header">
-          <h2>🎯 Target Model API & System Instruction</h2>
+          <h2>Target Model API & System Instruction</h2>
           <span class="tag">Same conditions across all targets</span>
         </div>
         <div class="card-body">
@@ -142,7 +139,7 @@
       <details class="card judge-card" open>
         <summary class="card-header summary-header">
           <div class="title-with-meta">
-            <h2>⚖️ Judge Configuration (LLM-as-a-Judge)</h2>
+            <h2>Judge Configuration (LLM-as-a-Judge)</h2>
             <span class="tag tag-judge">Isolated Evaluator</span>
           </div>
           <span class="helper-hint">Click to collapse/expand • Default: claude-sonnet-5</span>
@@ -180,16 +177,16 @@
       <section class="card attack-dataset-card">
         <div class="card-header">
           <div class="title-with-meta">
-            <h2>⚔️ Benchmark Dataset</h2>
+            <h2>Benchmark Dataset</h2>
             <div class="category-tabs">
               <button type="button" class="cat-tab active" id="tabFilterAllTests" data-filter="all">
                 All Tests (<span id="totalTestsCountBadge">25</span>)
               </button>
               <button type="button" class="cat-tab" id="tabFilterAttacks" data-filter="attacks">
-                ⚔️ Direct Prompt Injection (<span id="dpiCountBadge">20</span>)
+                Direct Prompt Injection (<span id="dpiCountBadge">20</span>)
               </button>
               <button type="button" class="cat-tab" id="tabFilterBenign" data-filter="benign">
-                🛡️ Benign Controls (<span id="benignCountBadge">5</span>)
+                Benign Controls (<span id="benignCountBadge">5</span>)
               </button>
             </div>
           </div>
@@ -228,12 +225,10 @@
             </div>
             <div class="exec-actions">
               <button type="button" id="btnStartBenchmark" class="btn btn-primary btn-lg">
-                <span class="btn-icon">🚀</span>
-                <span class="btn-text">Start Automated Benchmark</span>
+                Start Automated Benchmark
               </button>
               <button type="button" id="btnStopBenchmark" class="btn btn-danger btn-lg hidden">
-                <span class="btn-icon">🛑</span>
-                <span class="btn-text">Stop Benchmark</span>
+                Stop Benchmark
               </button>
             </div>
           </div>
@@ -262,7 +257,7 @@
       <section class="card stats-card" id="statisticsSection">
         <div class="card-header">
           <div class="title-with-meta">
-            <h2>📊 Benchmark Statistics & Evaluation</h2>
+            <h2>Benchmark Statistics & Evaluation</h2>
             <div class="category-tabs">
               <button type="button" class="cat-tab active" id="btnShowModelStats">
                 Model Attack ASR Leaderboard
@@ -276,9 +271,9 @@
             </div>
           </div>
           <div class="header-tools">
-            <button type="button" id="btnExportCSV" class="btn btn-secondary btn-sm">📥 Export CSV</button>
-            <button type="button" id="btnExportJSON" class="btn btn-secondary btn-sm">📥 Export JSON</button>
-            <button type="button" id="btnExportMD" class="btn btn-secondary btn-sm">📄 Export Markdown Report</button>
+            <button type="button" id="btnExportCSV" class="btn btn-secondary btn-sm">Export CSV</button>
+            <button type="button" id="btnExportJSON" class="btn btn-secondary btn-sm">Export JSON</button>
+            <button type="button" id="btnExportMD" class="btn btn-secondary btn-sm">Export Markdown Report</button>
           </div>
         </div>
         <div class="card-body">
@@ -359,7 +354,7 @@
       <section class="card results-card" id="resultsMatrixSection">
         <div class="card-header">
           <div class="title-with-meta">
-            <h2>📋 Detailed Evaluation Matrix (Attack × Model)</h2>
+            <h2>Detailed Evaluation Matrix (Attack × Model)</h2>
             <span id="resultsCountBadge" class="badge-count">0 Results</span>
           </div>
           <div class="filter-tools">
@@ -597,11 +592,11 @@
   <dialog id="manualOverrideDialog" class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h3>✏️ Manual Verification Override</h3>
+        <h3>Manual Verification Override</h3>
         <button type="button" id="btnCloseModal" class="btn-close">&times;</button>
       </div>
       <div class="modal-body">
-        <p class="modal-subtitle">Researchers can manually correct the Judge's evaluation score if the automated judge made a mistake.</p>
+        <p class="modal-subtitle">Manually verify or correct the automated Judge evaluation score.</p>
         
         <div class="modal-info-box">
           <div><strong>Target Model:</strong> <span id="modalTargetModel">-</span></div>
@@ -627,7 +622,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" id="btnCancelOverride" class="btn btn-ghost">Cancel</button>
-        <button type="button" id="btnSaveOverride" class="btn btn-primary">💾 Save Manual Override</button>
+        <button type="button" id="btnSaveOverride" class="btn btn-primary">Save Manual Override</button>
       </div>
     </div>
   </dialog>
