@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments and API Keys / Secrets
+.env
+.env.*
+!.env.example
+*.env
+env/
+venv/
+
+# Databases & local benchmark run history
+*.db
+*.sqlite3
+app/storage/benchmark_runs.db
+app/storage/runs/
+
+# Pytest
+.pytest_cache/
